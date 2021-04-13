@@ -9,16 +9,27 @@
 import SwiftUI
 
 public struct DrawContinerView: View {
+    
+    // MARK: - State 
+    
     @State private var currentDrawing: Drawing = Drawing()
     @State private var drawings: [Drawing] = [Drawing]()
     @State private var color: Color = Color.black
     @State private var lineWidth: CGFloat = 3.0
     
-    public var saveAction: (UIImage) -> Void
+    // MARK: - Private
     
-    public init(action: @escaping (UIImage) -> Void) {
+    private var saveAction: (UIImage) -> Void
+    private var size: CGSize
+    
+    // MARK: - Init
+    
+    public init(size: CGSize, action: @escaping (UIImage) -> Void) {
+        self.size = size
         saveAction = action
     }
+    
+    // MARK: - Body
     
     public var body: some View {
         VStack(alignment: .center) {
@@ -28,7 +39,10 @@ public struct DrawContinerView: View {
                     .font(.largeTitle)
                     .padding()
                 Spacer()
-                DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth) { saveAction(drawingPad.snapshot()) }
+                DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth) {
+                    let image = drawingPad.asImage(size: size)
+                    saveAction(image)
+                }
                     .padding()
             }
             drawingPad
@@ -51,7 +65,7 @@ public struct DrawContinerView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawContinerView() { action in
+        DrawContinerView(size: CGSize(width: 300, height: 300)) { action in
             
         }
     }
