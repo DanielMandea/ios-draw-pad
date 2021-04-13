@@ -16,6 +16,10 @@ public struct DrawContinerView: View {
     
     public var saveAction: (UIImage) -> Void
     
+    public init(action: @escaping (UIImage) -> Void) {
+        saveAction = action
+    }
+    
     public var body: some View {
         VStack(alignment: .center) {
             HStack {
@@ -47,10 +51,8 @@ public struct DrawContinerView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            DrawContinerView(saveAction: { view in
-                
-            })
+        DrawContinerView() { action in
+            
         }
     }
 }
