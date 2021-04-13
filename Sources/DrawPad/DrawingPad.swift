@@ -23,7 +23,7 @@ struct DrawingPad: View {
                 self.add(drawing: self.currentDrawing, toPath: &path)
             }
             .stroke(self.color, lineWidth: self.lineWidth)
-                .background(Color(white: 0.95))
+            .background(Color(red: 245/255, green: 245/255, blue: 245/255))
                 .gesture(
                     DragGesture(minimumDistance: 0.1)
                         .onChanged({ (value) in

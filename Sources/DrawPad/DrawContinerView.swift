@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct DrawContinerView: View {
     
-    // MARK: - State 
+    // MARK: - State
     
     @State private var currentDrawing: Drawing = Drawing()
     @State private var drawings: [Drawing] = [Drawing]()
