@@ -1,1 +1,3 @@
-# ios-draw-pad
+# DrawPad
+
+A description of this package.
