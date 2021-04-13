@@ -24,6 +24,7 @@ extension View {
     func asImage(size: CGSize) -> UIImage {
         let controller = UIHostingController(rootView: self)
         controller.view.bounds = CGRect(origin: .zero, size: size)
+        controller.view.backgroundColor = UIColor(hex: "#F5F5F5")
         let image = controller.view.asImage()
         return image
     }
